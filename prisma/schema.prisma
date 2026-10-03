@@ -73,7 +73,6 @@ model User {
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   sellerProfile SellerProfile?
-  products      Product[]
   buyerOrders   Order[]        @relation("BuyerOrders")
   checkouts     Checkout[]
   reviews       Review[]
@@ -130,6 +129,7 @@ model Product {
   seller        SellerProfile  @relation(fields: [sellerId], references: [id], onDelete: Cascade)
   images        ProductImage[]
   orderItems    OrderItem[]
+  cartItems     CartItem[]
   favorites     Favorite[]
   reviews       Review[]
 
