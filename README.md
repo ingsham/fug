@@ -133,3 +133,13 @@ Leave Root Directory as `./`. Vercel will detect Next.js automatically. The proj
 Add the production values from `.env.example` in Vercel → Settings → Environment Variables. At minimum, the production deployment needs `DATABASE_URL`, `DIRECT_URL`, `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `NEXT_PUBLIC_APP_URL`, and the required Paystack/Blob credentials for those features.
 
 Do not commit `.env` or production secrets to GitHub.
+
+## Vercel database deployment
+
+This project is configured to run `prisma db push` automatically during the
+Vercel build, followed by `prisma generate` and `next build`. Make sure the
+Vercel project has a valid `DATABASE_URL` environment variable pointing to the
+production PostgreSQL database.
+
+After deployment, open `/api/health`. A successful response contains
+`"ok": true` and `"database": "connected"`.
